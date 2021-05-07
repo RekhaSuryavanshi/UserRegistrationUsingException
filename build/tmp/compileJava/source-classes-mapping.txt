@@ -1,4 +1,0 @@
-com/userregistration/UserRegistrationException.java
- com.userregistration.UserRegistrationException
-com/userregistration/UserRegistration.java
- com.userregistration.UserRegistration
