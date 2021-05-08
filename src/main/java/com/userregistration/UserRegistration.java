@@ -8,6 +8,7 @@ public class UserRegistration {
     private static final String Last_Name_Pattern="(^[A-Z]{1}[a-z]{2,}$)";
     private static final String Email_Pattern="^[a-zA-Z0-9+.-]*+[a-zA-Z0-9+]*@[a-zA-Z0-9+.,]*+$";
     private static final String PhoneNo_Pattern="^[0-9]{2} [0-9]{10}$";
+    private static final String Password_Pattern="^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{8,}";
 
     public boolean checkFirstName(String fname) throws UserRegistrationException, NullPointerException {
             boolean result = Pattern.compile(First_Name_Pattern).matcher(fname).matches();
@@ -46,6 +47,17 @@ public class UserRegistration {
         boolean result = Pattern.compile(PhoneNo_Pattern).matcher(email).matches();
         if (result) {
             System.out.println(email + " is valid PhoneNo");
+            return  true ;
+        }
+        else {
+            throw new UserRegistrationException("please enter valid proper input");
+        }
+    }
+
+    public boolean checkPassword(String email) throws UserRegistrationException, NullPointerException {
+        boolean result = Pattern.compile(Password_Pattern).matcher(email).matches();
+        if (result) {
+            System.out.println(email + " is valid Password");
             return  true ;
         }
         else {

@@ -144,4 +144,39 @@ public class UserRegistrationTest {
         }
         Assertions.assertTrue(result);
     }
+
+    @Test
+    public void givenNullPassword_shouldThrowException() throws UserRegistrationException {
+        UserRegistration userRegistration = new UserRegistration();
+        try {
+            boolean result = userRegistration.checkPassword(null);
+            Assertions.assertTrue(result);
+        }catch (NullPointerException e) {
+            throw new UserRegistrationException("please enter not null input");
+        }
+    }
+
+    @Test
+    public void givenPassword_whenNotProper_shouldThrowException() {
+        UserRegistration userRegistration = new UserRegistration();
+        try {
+            boolean result=userRegistration.checkPassword("91a");
+            Assertions.assertTrue(result);
+
+        } catch (UserRegistrationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenPassword_whenProper_shouldReturnValid() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean result = false;
+        try {
+            result = userRegistration.checkPassword("xyzab@123");
+        }catch (UserRegistrationException e) {
+            e.printStackTrace();
+        }
+        Assertions.assertTrue(result);
+    }
 }
