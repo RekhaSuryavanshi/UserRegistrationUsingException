@@ -109,4 +109,39 @@ public class UserRegistrationTest {
         }
         Assertions.assertTrue(result);
     }
+
+    @Test
+    public void givenNullPhoneno_shouldThrowException() throws UserRegistrationException {
+        UserRegistration userRegistration = new UserRegistration();
+        try {
+            boolean result = userRegistration.checkPhoneNo(null);
+            Assertions.assertTrue(result);
+        }catch (NullPointerException e) {
+            throw new UserRegistrationException("please enter not null input");
+        }
+    }
+
+    @Test
+    public void givenPhoneno_whenNotProper_shouldThrowException() {
+        UserRegistration userRegistration = new UserRegistration();
+        try {
+            boolean result=userRegistration.checkPhoneNo("91");
+            Assertions.assertTrue(result);
+
+        } catch (UserRegistrationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenPhoneno_whenProper_shouldReturnValid() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean result = false;
+        try {
+            result = userRegistration.checkPhoneNo("91 9834811754");
+        }catch (UserRegistrationException e) {
+            e.printStackTrace();
+        }
+        Assertions.assertTrue(result);
+    }
 }
